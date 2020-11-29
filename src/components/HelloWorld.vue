@@ -16,13 +16,14 @@
           filled
           prepend-icon="mdi-camera"
           v-on:change="onFileInputChange"
+          v-model="file"
           outlined
         ></v-file-input>
         <v-btn
           color="primary"
           v-bind:disabled="classifyBtnEnabled"
           v-bind:loading="isLoading"
-          v-on:click="processImage"
+          v-on:click="submit"
         >
           Classify
         </v-btn>
@@ -54,7 +55,9 @@
         </div>
         <div></div>
 
-        <div></div>
+        <div>
+          {{predictedClass}}
+        </div>
       </v-card-text>
     </v-card>
   </v-container>
@@ -63,6 +66,8 @@
 <script>
 import Chart from "chart.js";
 import planetChartData from "../chart-data.js";
+import axios from 'axios'
+
 export default {
   name: "app",
   data() {
@@ -71,10 +76,13 @@ export default {
       isLoading: false,
       planetChartData: planetChartData,
       displayResults: false,
+      file: null,
+      predictedClass: '',
     };
   },
   methods: {
     onFileInputChange: function () {
+      //this.file = File[];
       this.classifyBtnEnabled = false;
     },
     processImage: function () {
@@ -84,6 +92,19 @@ export default {
     mockAsync: function () {
       this.isLoading = false;
       this.displayResults = true;
+    },
+    submit () {
+      //var reader = new FileReader();
+      //reader.readAsText(this.file);
+      //reader.onload = () => {
+      //  this.data = reader.result;
+      //}
+      axios.post('http://127.0.0.1:5000/predict', {
+        file : this.file,
+      })
+      .then((response) => {
+        this.predictedClass = response.data.class_name
+      })
     },
     createChart(chartId, chartData) {
       const ctx = document.getElementById(chartId);
