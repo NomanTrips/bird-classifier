@@ -44,6 +44,7 @@ class Net(nn.Module):
             num_features *= s
         return num_features
 
+
 app = Flask(__name__)
 CORS(app)
 imagenet_class_index = json.load(open('./imagenet_class_index.json'))
