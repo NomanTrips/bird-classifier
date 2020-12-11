@@ -82,10 +82,10 @@ def get_prediction(image_bytes):
     #predicted_idx = str(y_hat.item())
     #print(predicted_idx)
     if probability == 1:
-            class_name = 'Hawk'
+            class_id = 1
     else:
-        class_name = 'Non-hawk'
-    return class_name
+        class_id = 0
+    return class_id
 
 
 @app.route('/predict', methods=['POST'])
@@ -93,8 +93,8 @@ def predict():
     if request.method == 'POST':
         file = request.files['file']
         img_bytes = file.read()
-        class_name = get_prediction(image_bytes=img_bytes)
-        return jsonify({'class_name': class_name})
+        class_id = get_prediction(image_bytes=img_bytes)
+        return jsonify({'class_id': class_id})
 
 
 if __name__ == '__main__':

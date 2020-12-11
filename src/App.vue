@@ -6,13 +6,13 @@
           alt="Vuetify Logo"
           class="shrink mr-2"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          :src="require('./assets/hawk-5.svg')"
           transition="scale-transition"
           width="40"
         />
 
         <h3 >
-          Birds of Prey Classifier
+          Birds of Prey Identifier
         </h3>
       </div>
 
@@ -28,17 +28,17 @@
       </v-btn>
     </v-app-bar>
     <v-main>
-      <HelloWorld />
+      <MainPage />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import MainPage from "./components/MainPage.vue";
 
 export default {
   components: {
-    HelloWorld,
+    MainPage,
   },
   data() {
     return {};

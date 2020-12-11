@@ -23,4 +23,5 @@ pnpm-debug.log*
 *.sw?
 
 /python_code/data
-/python_code/model.pt
+/python_code/hawk_data
+/python_code/model_vgg16.pt
