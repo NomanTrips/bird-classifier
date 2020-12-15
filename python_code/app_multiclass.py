@@ -23,7 +23,7 @@ class_names = ['bald-eagle', 'barred-owl', 'coopers-hawk', 'crow', 'non-hawk', '
 #model.fc = nn.Linear(num_ftrs, 10)
 model = models.vgg16(pretrained=True)
 model.classifier[-1] = nn.Linear(in_features=4096, out_features=len(class_names))
-model.load_state_dict(torch.load('./model_vgg16.pt'))
+model.load_state_dict(torch.load('./model_vgg16.pt', map_location=torch.device('cpu')))
 model.eval()
 
 #print(model)
@@ -48,13 +48,13 @@ def get_prediction(image_bytes):
     #probas = torch.nn.softmax(outputs)
     m = nn.Softmax(dim=1)
     input = torch.randn(2, 3)
-    print(outputs)
+    #print(outputs)
     output = m(outputs)
     #for x in outputs[0]:
      #   print(torch.nn.Softmax(x.item()))
     #print(torch.nn.Softmax(outputs))
     #outputs = torch.nn.functional.softmax(outputs, dim=0)
-    print(output)
+    #print(output)
     #print(probas)
     #for x in probas:
     #    print(x.shape)
