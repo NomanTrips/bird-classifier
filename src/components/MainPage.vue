@@ -32,7 +32,7 @@
     <v-card v-show="displayResults" class="mx-auto" max-width="300px">
       <v-list-item three-line>
         <v-list-item-content>
-          <div class="overline mb-4">CLASSIFICATION RESULTS</div>
+          <div class="overline mb-4">IDENTIFICATION RESULTS</div>
           <v-list-item-title class="headline mb-1">
             {{ predictedClass.name }}
           </v-list-item-title>
@@ -130,6 +130,18 @@ export default {
           pictureUrl: "goshawk-avatar",
           model_id: "northern-goshawk",
         },
+        {
+          id: 10,
+          name: "American Kestrel",
+          pictureUrl: "kestrel-avatar",
+          model_id: "american-kestrel",
+        },
+        {
+          id: 11,
+          name: "Great horned owl",
+          pictureUrl: "great-horned-owl-avatar",
+          model_id: "great-horned-owl",
+        },
       ],
     };
   },
@@ -155,7 +167,8 @@ export default {
       let formData = new FormData();
       formData.append("file", this.file);
       axios
-        .post("http://127.0.0.1:5000/predict", formData, {
+        .post("http://52.37.86.143:5000/predict", formData, {
+        //  .post("http://127.0.0.1:5000/predict", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

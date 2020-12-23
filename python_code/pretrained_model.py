@@ -140,4 +140,4 @@ predict(train_loader)
 predict(test_loader)
 show_predictions(test_loader)
 
-torch.save(model_ft.state_dict(), 'model_vgg16.pt')
+torch.save(model_ft.state_dict(), 'vgg16_added_birds.pt')
